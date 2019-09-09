@@ -6,11 +6,26 @@
     android:layout_height="match_parent"
     tools:context="com.example.aluno.myapplication.Desenvolvimento">
 
-    <TextView
-        android:id="@+id/textView3"
+    <ImageView
+        android:id="@+id/ivFoto"
+        android:layout_width="193dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonFoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/background_light" />
+
+    <Button
+        android:id="@+id/buttonFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ihu"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="210dp" />
+        android:layout_marginBottom="282dp"
+        android:text="Foto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFoto" />
 </android.support.constraint.ConstraintLayout>
