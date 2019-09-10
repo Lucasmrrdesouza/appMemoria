@@ -3,12 +3,15 @@ package com.example.aluno.myapplication;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import java.util.BitSet;
 
 public class Desenvolvimento extends AppCompatActivity {
 
@@ -32,15 +35,24 @@ public class Desenvolvimento extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
     public void tirarFoto(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,1);
 
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1 && resultCode == RESULT_OK){
+
+            Bundle extras = data.getExtras();
+            Bitmap imagem = (Bitmap) extras.get("data");
+            imageViewFoto.setImageBitmap (imagem);
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
