@@ -11,12 +11,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orm.SchemaGenerator;
+import com.orm.SugarContext;
+import com.orm.SugarDb;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView titulo;
     private Button jogar;
     private Button importancia;
     private Button desenvolvimento;
+    private Button cadastro;
 
 
 
@@ -25,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SugarContext.init(getApplicationContext());
+        SchemaGenerator schemaGenerator = new SchemaGenerator(this);
+        schemaGenerator.createDatabase(new SugarDb(this).getDB());
 
 
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
@@ -39,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
         importancia = (Button) findViewById(R.id.buttonImportancia);
         desenvolvimento = (Button) findViewById(R.id.buttonDesenvolvimento);
         titulo = (TextView) findViewById(R.id.textViewTitulo);
+        cadastro = (Button) findViewById(R.id.btnTelaCadastrar);
+
+        cadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent (MainActivity.this, CadastroPessoaActivity.class));
+            }
+        });
+
 
         jogar.setOnClickListener(new View.OnClickListener() {
             @Override
