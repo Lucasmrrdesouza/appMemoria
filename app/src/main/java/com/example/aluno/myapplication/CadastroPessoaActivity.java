@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orm.SchemaGenerator;
 import com.orm.SugarContext;
 import com.orm.SugarDb;
+
+import java.util.List;
 
 public class CadastroPessoaActivity extends AppCompatActivity {
 
@@ -17,6 +20,9 @@ public class CadastroPessoaActivity extends AppCompatActivity {
     private EditText nome;
     private EditText email;
     private Button cadastrar;
+
+    private TextView pessoas;
+    private Button listarPessoas;
 
 
     @Override
@@ -30,6 +36,8 @@ public class CadastroPessoaActivity extends AppCompatActivity {
         nome = (EditText) findViewById(R.id.etNome);
         email= (EditText) findViewById(R.id.etEmail);
         cadastrar = (Button) findViewById(R.id.btnCadastrar);
+        pessoas = (TextView) findViewById(R.id.tvPessoas);
+        listarPessoas = (Button) findViewById(R.id.btnListarPessoas);
 
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +62,24 @@ public class CadastroPessoaActivity extends AppCompatActivity {
 
                 nome.setText("");
                 email.setText("");
+
+            }
+        });
+
+        listarPessoas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                List<Pessoa> listaDePessoas= Pessoa.listAll(Pessoa.class);
+
+                String lista = "";
+
+                for (Pessoa p: listaDePessoas) {
+                    lista = lista + p.getNome()+"\n";
+                }
+
+                pessoas.setText(lista);
 
             }
         });
